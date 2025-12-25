@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@layer base {
+  .font-playfair {
+    font-family: var(--font-playfair);
+  }
+  
+  .font-sans {
+    font-family: var(--font-inter);
+  }
+  
+  body {
+    font-family: var(--font-inter);
+  }
+  
+  h1, h2, h3 {
+    font-family: var(--font-playfair);
+  }
+}
