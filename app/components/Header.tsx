@@ -1,15 +1,22 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const isScrollingToSection = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      
+      if (isScrollingToSection.current) {
+        // Don't hide during programmatic scroll
+        setLastScrollY(currentScrollY);
+        return;
+      }
       
       if (currentScrollY < 50) {
         // Always show when near the top
@@ -32,7 +39,14 @@ export default function Header() {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
+      isScrollingToSection.current = true;
+      setIsVisible(true);
       element.scrollIntoView({ behavior: 'smooth' });
+      
+      // Reset after scroll animation completes
+      setTimeout(() => {
+        isScrollingToSection.current = false;
+      }, 1000);
     }
   };
 
@@ -42,7 +56,12 @@ export default function Header() {
     }`}>
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-gray-900">Aaron Finnilä</h1>
+          <h1
+            onClick={() => scrollToSection('hero')}
+            className="text-2xl font-bold text-gray-900 cursor-pointer hover:text-gray-600 transition-colors"
+          >
+            Aaron Finnilä
+          </h1>
           
           <div className="flex items-center gap-8">
             <button
@@ -54,11 +73,6 @@ export default function Header() {
               onClick={() => scrollToSection('projects')}
               className="text-gray-800 hover:text-gray-600 transition-colors cursor-pointer">
                 Projects
-            </button>
-            <button
-              onClick={() => scrollToSection('skills')}
-              className="text-gray-800 hover:text-gray-600 transition-colors cursor-pointer">
-                Skills
             </button>
             <button
               onClick={() => scrollToSection('contact')}
