@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 export default function Contact() {
   return (
@@ -21,15 +21,6 @@ export default function Contact() {
           >
             <FaLinkedin size={20} />
             <span>LinkedIn</span>
-          </a>
-          <a
-            href="https://github.com/aaronfinnila"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-900 text-white rounded-lg transition-colors cursor-pointer"
-          >
-            <FaGithub size={20} />
-            <span>GitHub</span>
           </a>
         </div>
       </div>

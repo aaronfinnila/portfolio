@@ -15,20 +15,20 @@ export default function About() {
           </p>
         </div>
 
-        <div className="mt-10 grid md:grid-cols-2 gap-6 max-w-4xl">
-          <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-300">
-            <h3 className="text-xl font-semibold mb-3">Education</h3>
-            <p className="text-gray-700">
+        <div className="mt-10 grid md:grid-cols-2 gap-6 max-w-5xl">
+          <div className="bg-white rounded-lg p-8 shadow-lg border border-gray-300">
+            <h3 className="text-2xl font-semibold mb-4">Education</h3>
+            <p className="text-gray-700 text-lg">
               Bachelor's in IT - University of Turku, 2023-2026
             </p>
-            <p className="text-gray-700">
+            <p className="text-gray-700 text-lg">
               Master's in IT - University of Turku, 2026-2028
             </p>
           </div>
 
-          <div className="bg-white rounded-lg p-6 shadow-lg border border-gray-300">
-            <h3 className="text-xl font-semibold mb-3">Technologies</h3>
-            <p className="text-gray-700">
+          <div className="bg-white rounded-lg p-8 shadow-lg border border-gray-300">
+            <h3 className="text-2xl font-semibold mb-4">Technologies</h3>
+            <p className="text-gray-700 text-lg">
               Java, C, Python, TypeScript, React, Node.js, Spring Boot, Tailwind CSS, Git, PostgreSQL, MongoDB
             </p>
           </div>

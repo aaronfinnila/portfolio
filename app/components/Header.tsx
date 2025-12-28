@@ -63,7 +63,7 @@ export default function Header() {
             Aaron Finnilä
           </h1>
           
-          <div className="flex items-center gap-8">
+          <div className="flex items-center gap-6">
             <button
               onClick={() => scrollToSection('about')}
               className="text-gray-800 hover:text-gray-600 transition-colors cursor-pointer"
@@ -80,7 +80,7 @@ export default function Header() {
                 Contact
             </button>
             
-            <div className="flex items-center gap-4 ml-4 border-l border-gray-300 pl-4">
+            <div className="flex items-center gap-4 border-l border-gray-300 pl-3">
               <a
                 href="https://github.com/aaronfinnila"
                 target="_blank"
