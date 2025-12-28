@@ -1,22 +1,33 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function Header() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 50) {
+        // Always show when near the top
         setIsVisible(true);
-      } else {
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show header
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down - hide header
         setIsVisible(false);
       }
+      
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -31,33 +42,50 @@ export default function Header() {
     }`}>
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-forest-900">Aaron Finnilä</h1>
+          <h1 className="text-2xl font-bold text-gray-900">Aaron Finnilä</h1>
           
           <div className="flex items-center gap-8">
             <button
               onClick={() => scrollToSection('about')}
-              className="text-forest-800 hover:text-forest-600 transition-colors"
-            >
-              About
+              className="text-gray-800 hover:text-gray-600 transition-colors cursor-pointer"
+            >About
             </button>
             <button
               onClick={() => scrollToSection('projects')}
-              className="text-forest-800 hover:text-forest-600 transition-colors"
-            >
-              Projects
+              className="text-gray-800 hover:text-gray-600 transition-colors cursor-pointer">
+                Projects
             </button>
             <button
               onClick={() => scrollToSection('skills')}
-              className="text-forest-800 hover:text-forest-600 transition-colors"
-            >
-              Skills
+              className="text-gray-800 hover:text-gray-600 transition-colors cursor-pointer">
+                Skills
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="text-forest-800 hover:text-forest-600 transition-colors"
-            >
-              Contact
+              className="text-gray-800 hover:text-gray-600 transition-colors cursor-pointer">
+                Contact
             </button>
+            
+            <div className="flex items-center gap-4 ml-4 border-l border-gray-300 pl-4">
+              <a
+                href="https://github.com/aaronfinnila"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-800 hover:text-gray-600 transition-colors"
+                aria-label="GitHub"
+              >
+                <FaGithub size={24} />
+              </a>
+              <a
+                href="https://linkedin.com/in/aaronfinnila"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-800 hover:text-gray-600 transition-colors"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin size={24} />
+              </a>
+            </div>
           </div>
         </div>
       </nav>

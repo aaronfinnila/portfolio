@@ -41,9 +41,12 @@
   :root, :host {
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --color-blue-600: #155dfc;
+    --color-blue-700: #1447e6;
     --color-gray-100: #f3f4f6;
     --color-gray-200: #e5e7eb;
     --color-gray-300: #d1d5dc;
+    --color-gray-600: #4a5565;
     --color-gray-800: #1e2939;
     --color-gray-900: #101828;
     --color-white: #fff;
@@ -67,6 +70,7 @@
     --text-8xl--line-height: 1;
     --text-9xl: 8rem;
     --text-9xl--line-height: 1;
+    --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --tracking-tight: -.025em;
@@ -81,9 +85,12 @@
 
   @supports (color: lab(0% 0 0)) {
     :root, :host {
+      --color-blue-600: lab(44.0605% 29.0279 -86.0352);
+      --color-blue-700: lab(36.9089% 35.0961 -85.6872);
       --color-gray-100: lab(96.1596% -.0823438 -1.13575);
       --color-gray-200: lab(91.6229% -.159115 -2.26791);
       --color-gray-300: lab(85.1236% -.612259 -3.7138);
+      --color-gray-600: lab(35.6337% -1.58697 -10.8425);
       --color-gray-800: lab(16.1051% -1.18239 -11.7533);
       --color-gray-900: lab(8.11897% .811279 -12.254);
     }
@@ -423,6 +430,50 @@
     }
   }
 
+  .mx-4 {
+    margin-inline: calc(var(--spacing) * 4);
+  }
+
+  .mx-10 {
+    margin-inline: calc(var(--spacing) * 10);
+  }
+
+  .mx-24 {
+    margin-inline: calc(var(--spacing) * 24);
+  }
+
+  .mx-36 {
+    margin-inline: calc(var(--spacing) * 36);
+  }
+
+  .mx-48 {
+    margin-inline: calc(var(--spacing) * 48);
+  }
+
+  .mx-76 {
+    margin-inline: calc(var(--spacing) * 76);
+  }
+
+  .mx-80 {
+    margin-inline: calc(var(--spacing) * 80);
+  }
+
+  .mx-85 {
+    margin-inline: calc(var(--spacing) * 85);
+  }
+
+  .mx-89 {
+    margin-inline: calc(var(--spacing) * 89);
+  }
+
+  .mx-90 {
+    margin-inline: calc(var(--spacing) * 90);
+  }
+
+  .mx-100 {
+    margin-inline: calc(var(--spacing) * 100);
+  }
+
   .mx-auto {
     margin-inline: auto;
   }
@@ -431,8 +482,16 @@
     margin-top: calc(var(--spacing) * 4);
   }
 
+  .mr-2 {
+    margin-right: calc(var(--spacing) * 2);
+  }
+
   .mr-3 {
     margin-right: calc(var(--spacing) * 3);
+  }
+
+  .mb-2 {
+    margin-bottom: calc(var(--spacing) * 2);
   }
 
   .mb-3 {
@@ -455,6 +514,14 @@
     margin-bottom: calc(var(--spacing) * 12);
   }
 
+  .ml-4 {
+    margin-left: calc(var(--spacing) * 4);
+  }
+
+  .block {
+    display: block;
+  }
+
   .flex {
     display: flex;
   }
@@ -465,6 +532,10 @@
 
   .inline-block {
     display: inline-block;
+  }
+
+  .inline-flex {
+    display: inline-flex;
   }
 
   .h-2 {
@@ -499,6 +570,10 @@
     max-width: var(--container-6xl);
   }
 
+  .flex-1 {
+    flex: 1;
+  }
+
   .-translate-y-full {
     --tw-translate-y: -100%;
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -511,6 +586,10 @@
 
   .animate-bounce {
     animation: var(--animate-bounce);
+  }
+
+  .cursor-pointer {
+    cursor: pointer;
   }
 
   .flex-col {
@@ -594,8 +673,21 @@
     border-top-width: 1px;
   }
 
+  .border-l {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 1px;
+  }
+
+  .border-gray-200 {
+    border-color: var(--color-gray-200);
+  }
+
   .border-gray-300 {
     border-color: var(--color-gray-300);
+  }
+
+  .bg-blue-600 {
+    background-color: var(--color-blue-600);
   }
 
   .bg-gray-100 {
@@ -632,8 +724,16 @@
     padding: calc(var(--spacing) * 8);
   }
 
+  .px-2 {
+    padding-inline: calc(var(--spacing) * 2);
+  }
+
   .px-3 {
     padding-inline: calc(var(--spacing) * 3);
+  }
+
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
   }
 
   .px-6 {
@@ -648,6 +748,10 @@
     padding-block: calc(var(--spacing) * 1);
   }
 
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
+
   .py-3 {
     padding-block: calc(var(--spacing) * 3);
   }
@@ -660,12 +764,28 @@
     padding-block: calc(var(--spacing) * 8);
   }
 
+  .py-10 {
+    padding-block: calc(var(--spacing) * 10);
+  }
+
+  .py-20 {
+    padding-block: calc(var(--spacing) * 20);
+  }
+
   .py-24 {
     padding-block: calc(var(--spacing) * 24);
   }
 
+  .pt-4 {
+    padding-top: calc(var(--spacing) * 4);
+  }
+
   .pt-8 {
     padding-top: calc(var(--spacing) * 8);
+  }
+
+  .pl-4 {
+    padding-left: calc(var(--spacing) * 4);
   }
 
   .text-center {
@@ -711,6 +831,11 @@
     font-weight: var(--font-weight-bold);
   }
 
+  .font-medium {
+    --tw-font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium);
+  }
+
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
@@ -719,6 +844,14 @@
   .tracking-tight {
     --tw-tracking: var(--tracking-tight);
     letter-spacing: var(--tracking-tight);
+  }
+
+  .text-gray-800 {
+    color: var(--color-gray-800);
+  }
+
+  .text-gray-900 {
+    color: var(--color-gray-900);
   }
 
   .text-white {
@@ -765,8 +898,20 @@
   }
 
   @media (hover: hover) {
+    .hover\:bg-blue-700:hover {
+      background-color: var(--color-blue-700);
+    }
+  }
+
+  @media (hover: hover) {
     .hover\:bg-gray-900:hover {
       background-color: var(--color-gray-900);
+    }
+  }
+
+  @media (hover: hover) {
+    .hover\:text-gray-600:hover {
+      color: var(--color-gray-600);
     }
   }
 
@@ -781,6 +926,20 @@
       --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, #0000001a), 0 8px 10px -6px var(--tw-shadow-color, #0000001a);
       box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
     }
+  }
+
+  .focus\:border-transparent:focus {
+    border-color: #0000;
+  }
+
+  .focus\:ring-2:focus {
+    --tw-ring-shadow: var(--tw-ring-inset, ) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color, currentcolor);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+
+  .focus\:outline-none:focus {
+    --tw-outline-style: none;
+    outline-style: none;
   }
 
   @media (min-width: 48rem) {
