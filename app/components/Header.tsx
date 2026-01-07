@@ -13,19 +13,15 @@ export default function Header() {
       const currentScrollY = window.scrollY;
       
       if (isScrollingToSection.current) {
-        // Don't hide during programmatic scroll
         setLastScrollY(currentScrollY);
         return;
       }
       
       if (currentScrollY < 50) {
-        // Always show when near the top
         setIsVisible(true);
       } else if (currentScrollY < lastScrollY) {
-        // Scrolling up - show header
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY) {
-        // Scrolling down - hide header
         setIsVisible(false);
       }
       
@@ -43,7 +39,6 @@ export default function Header() {
       setIsVisible(true);
       element.scrollIntoView({ behavior: 'smooth' });
       
-      // Reset after scroll animation completes
       setTimeout(() => {
         isScrollingToSection.current = false;
       }, 1000);
