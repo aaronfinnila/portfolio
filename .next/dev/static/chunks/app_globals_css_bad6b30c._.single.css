@@ -371,6 +371,10 @@
 @layer components;
 
 @layer utilities {
+  .visible {
+    visibility: visible;
+  }
+
   .fixed {
     position: fixed;
   }
@@ -467,6 +471,10 @@
 
   .min-h-screen {
     min-height: 100vh;
+  }
+
+  .w-full {
+    width: 100%;
   }
 
   .max-w-2xl {
@@ -871,6 +879,12 @@
   @media (min-width: 64rem) {
     .lg\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .lg\:px-12 {
+      padding-inline: calc(var(--spacing) * 12);
     }
   }
 

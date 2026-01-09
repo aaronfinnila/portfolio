@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import DarkModeProvider from "./components/DarkModeProvider";
 import { Playfair_Display, Inter } from 'next/font/google';
 
 const playfair = Playfair_Display({ 
@@ -28,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${playfair.variable} ${inter.variable} font-sans`}>
-        <DarkModeProvider>{children}</DarkModeProvider>
+        {children}
       </body>
     </html>
   );

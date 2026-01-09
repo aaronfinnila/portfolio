@@ -1,55 +1,72 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 export default function Header() {
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
   const isScrollingToSection = useRef(false);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
       if (isScrollingToSection.current) {
-        setLastScrollY(currentScrollY);
+        lastScrollY.current = currentScrollY;
         return;
       }
       
       if (currentScrollY < 50) {
         setIsVisible(true);
-      } else if (currentScrollY < lastScrollY) {
+      } else if (currentScrollY < lastScrollY.current - 5) {
         setIsVisible(true);
-      } else if (currentScrollY > lastScrollY) {
+      } else if (currentScrollY > lastScrollY.current + 5) {
         setIsVisible(false);
       }
       
-      setLastScrollY(currentScrollY);
+      lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+      
       isScrollingToSection.current = true;
       setIsVisible(true);
       element.scrollIntoView({ behavior: 'smooth' });
       
-      setTimeout(() => {
+      const handleScrollEnd = () => {
         isScrollingToSection.current = false;
-      }, 1000);
+        lastScrollY.current = window.scrollY;
+      };
+      
+      scrollTimeout.current = setTimeout(() => {
+        handleScrollEnd();
+      }, 1500);
+      
+      window.addEventListener('scrollend', () => {
+        if (scrollTimeout.current) {
+          clearTimeout(scrollTimeout.current);
+        }
+        handleScrollEnd();
+      }, { once: true });
     }
-  };
+  }, []);
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 bg-gray-100/90 backdrop-blur-sm shadow-md transition-transform duration-300 ${
       isVisible ? 'translate-y-0' : '-translate-y-full'
     }`}>
-      <nav className="container mx-auto px-6 py-4">
+      <nav className="w-full px-8 lg:px-12 py-4">
         <div className="flex items-center justify-between">
           <h1
             onClick={() => scrollToSection('hero')}
