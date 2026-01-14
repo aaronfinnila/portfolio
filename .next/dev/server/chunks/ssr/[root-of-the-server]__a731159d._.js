@@ -72,8 +72,65 @@ var __TURBOPACK__imported__module__$5b$next$5d2f$internal$2f$font$2f$google$2f$i
 ;
 ;
 const metadata = {
-    title: "Aaron Finnilä - Portfolio",
-    description: "Portfolio website"
+    title: {
+        default: "Aaron Finnilä - Portfolio",
+        template: "%s | Aaron Finnilä"
+    },
+    description: "Portfolio of Aaron Finnilä - Full Stack Developer specializing in modern web technologies. View my projects, skills, and get in touch.",
+    keywords: [
+        "Aaron Finnilä",
+        "Full Stack Developer",
+        "Web Developer",
+        "Portfolio",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Software Engineer"
+    ],
+    authors: [
+        {
+            name: "Aaron Finnilä"
+        }
+    ],
+    creator: "Aaron Finnilä",
+    openGraph: {
+        type: "website",
+        locale: "en_US",
+        url: "https://aaronfinnila.fi",
+        siteName: "Aaron Finnilä Portfolio",
+        title: "Aaron Finnilä - Portfolio",
+        description: "Portfolio of Aaron Finnilä - Full Stack Developer specializing in modern web technologies. View my projects, skills, and get in touch.",
+        images: [
+            {
+                url: "/og-image.png",
+                width: 1200,
+                height: 627,
+                alt: "Aaron Finnilä Portfolio"
+            }
+        ]
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Aaron Finnilä - Full Stack Developer Portfolio",
+        description: "Portfolio of Aaron Finnilä - Full Stack Developer specializing in modern web technologies.",
+        images: [
+            "/og-image.png"
+        ]
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1
+        }
+    },
+    verification: {
+        google: 'google-site-verification=uj6L0zwLc1j8id1wA-jD1CDVOZsXYzPjPgMR2HlZk2I'
+    }
 };
 function RootLayout({ children }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("html", {
@@ -84,12 +141,12 @@ function RootLayout({ children }) {
             children: children
         }, void 0, false, {
             fileName: "[project]/app/layout.tsx",
-            lineNumber: 29,
+            lineNumber: 71,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/layout.tsx",
-        lineNumber: 28,
+        lineNumber: 70,
         columnNumber: 5
     }, this);
 }
