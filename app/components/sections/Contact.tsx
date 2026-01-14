@@ -1,9 +1,19 @@
+'use client';
+
 import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 export default function Contact() {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
   return (
     <section id="contact" className="py-24 px-6 bg-gray-200">
-      <div className="container mx-auto max-w-5xl">
+      <div 
+        ref={ref}
+        className={`container mx-auto max-w-5xl transition-all duration-700 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}
+      >
         <h2 className="text-4xl font-bold mb-8 text-gray-900">Get Connected</h2>
         <div className="flex items-center gap-4">
           <a
