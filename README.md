@@ -1,1 +1,1 @@
-Portfolio website with about, projects and contact section.
+Portfolio website with about, projects and contact sections.
