@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   keywords: ["Aaron Finnilä", "Full Stack Developer", "Web Developer", "Portfolio", "React", "Next.js", "TypeScript", "Software Engineer"],
   authors: [{ name: "Aaron Finnilä" }],
   creator: "Aaron Finnilä",
+  manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "en_US",
