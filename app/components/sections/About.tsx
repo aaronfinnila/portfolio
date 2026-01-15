@@ -16,7 +16,7 @@ export default function About() {
         <h2 className="text-4xl font-bold mb-8">About Me</h2>
         <div className="space-y-4 text-lg">
           <p>
-            I'm a third-year IT student at the University of Turku, set to graduate with my Bachelor's degree in Spring 2026. I'm planning to continue with my Master's in Fall 2026. My Bachelor's thesis, titled "Reitinhakualgoritmien käyttö ja soveltaminen videopelituotannossa", was completed in Fall 2025.
+            I'm a third-year IT student at the University of Turku, set to graduate with my Bachelor's degree in spring 2026. I'm planning to continue with my Master's in fall 2026. My Bachelor's thesis, which focused on pathfinding algorithms, was completed in fall 2025.
           </p>
           <p>
             I like to combine my theoretical knowledge with hands-on learning through my own projects. I'm always motivated to learn more.
