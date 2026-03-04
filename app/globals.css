@@ -1,19 +1,37 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-dark-bg: #111111;
+  --color-dark-bg-alt: #161616;
+  --color-dark-card: #1a1a1a;
+  --color-dark-border: #2a2a2a;
+  --color-dark-border-subtle: #222222;
+}
+
 @layer base {
-  .font-playfair {
-    font-family: var(--font-playfair);
+  .font-heading {
+    font-family: var(--font-merriweather);
   }
   
   .font-sans {
-    font-family: var(--font-inter);
+    font-family: var(--font-lato);
   }
   
   body {
-    font-family: var(--font-inter);
+    font-family: var(--font-lato);
   }
   
   h1, h2, h3 {
-    font-family: var(--font-playfair);
+    font-family: var(--font-merriweather);
   }
+}
+
+[style*="scrollbar-width"] {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+[style*="scrollbar-width"]::-webkit-scrollbar {
+  display: none;
 }

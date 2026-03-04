@@ -5,44 +5,140 @@ import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 export default function About() {
   const { ref, isVisible } = useScrollAnimation(0.1);
 
+  const education = [
+    {
+      period: '2026 — 2028',
+      title: "Master's in IT",
+      organization: 'University of Turku',
+      description:
+        'Continuing studies with a focus on advanced software engineering and distributed systems.',
+      tech: ['Software Engineering', 'Distributed Systems'],
+    },
+    {
+      period: '2023 — 2026',
+      title: "Bachelor's in IT",
+      organization: 'University of Turku',
+      description:
+        "Completed Bachelor's thesis on pathfinding algorithms in fall 2025. Core coursework in algorithms, data structures, databases, and software development.",
+      tech: ['Java', 'C', 'Python', 'Algorithms', 'Databases'],
+    },
+  ];
+
   return (
-    <section id="about" className="py-24 px-6 bg-gray-200">
-      <div 
+    <section
+      id="about"
+      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+    >
+      <div
         ref={ref}
-        className={`container mx-auto max-w-5xl transition-all duration-700 ease-out ${
+        className={`transition-all duration-700 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}
       >
-        <h2 className="text-4xl font-bold mb-8">About Me</h2>
-        <div className="space-y-4 text-lg">
+        <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-gray-50/75 dark:bg-dark-bg/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-100">About</h2>
+        </div>
+
+        <div className="space-y-4 text-gray-700 dark:text-gray-400 leading-relaxed">
           <p>
-            I'm a third-year IT student at the University of Turku, set to graduate with my Bachelor's degree in spring 2026. I'm planning to continue with my Master's in fall 2026. My Bachelor's thesis, which focused on pathfinding algorithms, was completed in fall 2025.
+            I&apos;m a software engineer with hands-on experience in building and deploying{' '}
+            applications.
+            I have experience working in the entire development lifecycle - from initial development
+            to deployment pipelines and cloud platforms.
+            I&apos;m constantly building new things, and picking up new technologies along
+            the way.
           </p>
           <p>
-            I like to combine my theoretical knowledge with hands-on learning through my own projects. I'm always motivated to learn more.
+            Most of my experience is in full-stack development and{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#E76F00] dark:hover:text-[#E76F00] transition-colors cursor-default">Java</span> applications,
+            but I also have experience with scripting in{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#FFD43B] dark:hover:text-[#FFD43B] transition-colors cursor-default">Python</span> and
+            have a bit of experience building applications with{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#A8B9CC] dark:hover:text-[#A8B9CC] transition-colors cursor-default">C</span>. I am also currently
+            learning{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#9B4DCA] dark:hover:text-[#9B4DCA] transition-colors cursor-default">C#</span> for
+            application and game development. In web development, my stack has often included some of the following:{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#61DAFB] dark:hover:text-[#61DAFB] transition-colors cursor-default">React</span>,{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-gray-500 dark:hover:text-white transition-colors cursor-default">Next.js</span>,{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#336791] dark:hover:text-[#5A9BD5] transition-colors cursor-default">PostgreSQL</span>,{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#6DB33F] dark:hover:text-[#6DB33F] transition-colors cursor-default">Spring Boot</span>,{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#FF9900] dark:hover:text-[#FF9900] transition-colors cursor-default">AWS</span>,{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#2088FF] dark:hover:text-[#2088FF] transition-colors cursor-default">GitHub Actions</span>.
           </p>
           <p>
-            My current experience is primarily with Java applications and web development, with some exposure to C and Python. However, my strong foundational knowledge allows me to quickly adapt and learn new technologies as needed.
+            Currently I&apos;m in my third year of studies at the{' '}
+            <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#0D9488] dark:hover:text-[#2DD4BF] transition-colors cursor-default">University of Turku</span>,
+            graduating with my Bachelor&apos;s degree in spring 2026 and planning to continue with my
+            Master&apos;s in fall 2026. My{' '}
+            <a
+              href="https://www.utupub.fi/handle/10024/197400"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-950 dark:text-gray-200 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              Bachelor&apos;s thesis
+            </a>{' '}
+            on pathfinding algorithms was completed in fall 2025.
+          </p>
+          <p>
+            I enjoy combining theory with hands-on learning through personal projects and
+            hackathons. At{' '}
+            <a
+              href="https://www.hackjunction.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-950 dark:text-gray-200 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              Junction
+            </a>{' '}
+            2025, my team placed 2nd in our challenge, where we built the first iteration of Business Advisor. At{' '}
+            <a
+              href="https://www.sinceai.fi"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-950 dark:text-gray-200 font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
+              Since AI
+            </a>{' '}
+            2025, we placed 5th overall with the first version of Funding Advisor.
           </p>
         </div>
 
-        <div className="mt-10 grid md:grid-cols-2 gap-6 max-w-5xl">
-          <div className="bg-white rounded-lg p-8 shadow-lg border border-gray-300">
-            <h3 className="text-2xl font-semibold mb-4">Education</h3>
-            <p className="text-gray-700 text-lg">
-              Bachelor's in IT - University of Turku, 2023-2026
-            </p>
-            <p className="text-gray-700 text-lg">
-              Master's in IT - University of Turku, 2026-2028
-            </p>
-          </div>
+        <div className="mt-12">
+          <ul className="space-y-8">
+            {education.map((item, index) => (
+              <li key={index}>
+                <div className="relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:opacity-50">
 
-          <div className="bg-white rounded-lg p-8 shadow-lg border border-gray-300">
-            <h3 className="text-2xl font-semibold mb-4">Technologies</h3>
-            <p className="text-gray-700 text-lg">
-              Java, C, Python, TypeScript, React, Node.js, Spring Boot, Tailwind CSS, Git, PostgreSQL, MongoDB
-            </p>
-          </div>
+                  <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-500 sm:col-span-2">
+                    {item.period}
+                  </header>
+
+                  <div className="z-10 sm:col-span-6">
+                    <h4 className="font-medium leading-snug text-gray-950 dark:text-gray-200">
+                      <span>{item.title}</span>
+                      <span className="mx-1 text-gray-500 dark:text-gray-500">&middot;</span>
+                      <span className="text-gray-700 dark:text-gray-300">{item.organization}</span>
+                    </h4>
+
+                    <p className="mt-2 text-sm leading-normal text-gray-700 dark:text-gray-400">
+                      {item.description}
+                    </p>
+
+                    <ul className="mt-3 flex flex-wrap gap-2" aria-label="Technologies">
+                      {item.tech.map((t, i) => (
+                        <li key={i}>
+                          <span className="flex items-center rounded-full bg-blue-100/80 dark:bg-blue-400/10 px-3 py-1 text-xs font-medium leading-5 text-blue-800 dark:text-blue-300">
+                            {t}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

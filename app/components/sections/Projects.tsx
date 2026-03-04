@@ -1,106 +1,206 @@
 'use client';
 
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { useRef, useState, useEffect, useCallback } from 'react';
+import { FaGithub, FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 
 export default function Projects() {
   const { ref, isVisible } = useScrollAnimation(0.1);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
   const projects = [
     {
       title: "Rilk",
-      description: "A 2D adventure game made with vanilla Java. Includes core gameplay mechanics, game engine, story and interactive UI.",
-      tech: ["Java", "2D Game"],
-      github: "https://github.com/aaronfinnila/javagame",
+      description: "A 2D adventure RPG built with vanilla Java and Swing. Features a custom combat system, original art and audio, explorable areas, and an in-game casino.",
+      tech: ["Java", "Swing"],
+      github: "https://github.com/aaronfinnila/rilk",
       demo: "https://awsy.itch.io/rilk",
     },
     {
-      title: "Company Investment Advisor",
-      description: "An AI-powered advisor for company investment decisions.",
-      tech: ["AI", "Web App"],
-      demo: "https://cia.attractor.fi",
+      title: "Funding Advisor",
+      description: "An AI-powered advisor for company investment decisions. Built with Next.js, it features a multi-step wizard that integrates with the Finnish PRH company registry API and uses AI to match companies against a funding instruments database.",
+      tech: ["Next.js", "AI", "TypeScript"],
+      demo: "https://fa.attractor.fi",
     },
     {
-      title: "Espoo Business Advisor",
-      description: "A web application that helps you prepare for business advisory meetings.",
-      tech: ["AI", "Web App"],
-      demo: "https://test.attractor.fi",
+      title: "cs2dle",
+      description: "A CS2 pro player guessing game. Fullstack app with a React + TypeScript frontend, Spring Boot backend, and PostgreSQL database. Player data sourced from the Liquipedia API.",
+      tech: ["React", "Spring Boot", "PostgreSQL"],
+      github: "https://github.com/aaronfinnila/cs2dle",
+      demo: "https://cs2dle.org",
+    },
+    {
+      title: "Business Advisor",
+      description: "A guided, multilingual web application that helps entrepreneurs prepare for business advisory meetings. Built with Next.js, it uses AI to generate personalized guidance based on a structured questionnaire.",
+      tech: ["Next.js", "AI", "TypeScript"],
+      demo: "https://ba.attractor.fi",
     },
     {
       title: "C Calculator",
-      description: "A calculator application with graphical user interface made with GTK4 library.",
-      tech: ["C"],
+      description: "A calculator application written in C with a graphical user interface built using the GTK4 library.",
+      tech: ["C", "GTK4"],
       github: "https://github.com/aaronfinnila/c_calculator",
     },
     {
-      title: "Spring Boot Project",
-      description: "A full-stack application built with Spring Boot framework and React + TypeScript.",
-      tech: ["Java", "Spring Boot", "React"],
-      github: "https://github.com/aaronfinnila/springboot_project1",
+      title: "Whispers",
+      description: "A Java messaging application built for a Distributed Computer Systems course. Features TCP socket communication, multi-threaded client handling, and a client-server architecture.",
+      tech: ["Java", "TCP Sockets"],
+      github: "https://github.com/aaronfinnila/whispers",
     },
     {
-      title: "Whispers",
-      description: "A communication application project for Distributed Computer Systems course.",
-      tech: ["Java"],
-      github: "https://github.com/aaronfinnila/whispers",
+      title: "3dgame",
+      description: "A 3D game development project built with the MonoGame framework.",
+      tech: ["C#", ".NET", "MonoGame"],
+      github: "https://github.com/aaronfinnila/3dgame",
     },
   ];
 
+  const getProjectLink = (project: { github?: string; demo?: string }) => {
+    if (project.demo) return project.demo;
+    if (project.github) return project.github;
+    return '#';
+  };
+
+  const updateScrollButtons = useCallback(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    setCanScrollLeft(container.scrollLeft > 1);
+    setCanScrollRight(
+      container.scrollLeft < container.scrollWidth - container.clientWidth - 1
+    );
+  }, []);
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    updateScrollButtons();
+    container.addEventListener('scroll', updateScrollButtons, { passive: true });
+    window.addEventListener('resize', updateScrollButtons);
+    return () => {
+      container.removeEventListener('scroll', updateScrollButtons);
+      window.removeEventListener('resize', updateScrollButtons);
+    };
+  }, [updateScrollButtons]);
+
+  const scroll = (direction: 'left' | 'right') => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+    const cardWidth = container.querySelector<HTMLElement>('[data-project-card]')?.offsetWidth ?? 300;
+    const gap = 12;
+    const scrollAmount = cardWidth + gap;
+    container.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <section id="projects" className="py-24 px-6">
-      <div 
+    <section
+      id="projects"
+      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+    >
+      <div
         ref={ref}
-        className={`container mx-auto max-w-5xl transition-all duration-700 ease-out ${
+        className={`transition-all duration-700 ease-out ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}
       >
-        <h2 className="text-4xl font-bold mb-12 text-gray-900">Projects</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg p-5 shadow-lg hover:shadow-xl transition-shadow border border-gray-300 flex flex-col"
-            >
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">{project.title}</h3>
-              <p className="text-gray-700 mb-4 text-sm flex-grow">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tech.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="px-2 py-1 bg-gray-100 text-gray-800 rounded-full text-xs"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className="flex gap-4 mt-auto">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
-                    aria-label="GitHub"
-                  >
-                    <FaGithub size={20} />
-                  </a>
-                )}
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 hover:text-gray-900 transition-colors cursor-pointer"
-                    aria-label="Live Demo"
-                  >
-                    <FaExternalLinkAlt size={18} />
-                  </a>
-                )}
-              </div>
-            </div>
-          ))}
+        <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-gray-50/75 dark:bg-dark-bg/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-100">Projects</h2>
+        </div>
+
+        <div className="relative">
+          <button
+            onClick={() => scroll('left')}
+            disabled={!canScrollLeft}
+            className={`absolute -left-10 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white dark:bg-dark-card shadow-lg border border-gray-200 dark:border-dark-border flex items-center justify-center transition-opacity cursor-pointer ${
+              canScrollLeft ? 'opacity-100 hover:bg-gray-100 dark:hover:bg-dark-border' : 'opacity-0 pointer-events-none'
+            }`}
+            aria-label="Scroll left"
+          >
+            <FaChevronLeft className="text-gray-700 dark:text-gray-200" size={12} />
+          </button>
+
+          <div
+            ref={scrollContainerRef}
+            className="flex gap-3 overflow-x-auto overflow-y-visible scroll-smooth pt-2 pb-4 -mt-2 pr-1"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {projects.map((project, index) => (
+              <a
+                key={index}
+                data-project-card
+                href={getProjectLink(project)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white dark:bg-dark-card rounded-lg p-5 shadow-md hover:shadow-lg dark:shadow-black/30 border border-gray-200 dark:border-dark-border-subtle flex flex-col min-w-[calc(40%-4px)] w-[calc(40%-4px)] flex-shrink-0 transition-all duration-300 hover:-translate-y-1 cursor-pointer no-underline"
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <FaFolder className="text-gray-400 dark:text-gray-600" size={24} />
+                  <div className="flex items-center gap-2.5">
+                    {project.github && (
+                      <span
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          window.open(project.github, '_blank', 'noopener,noreferrer');
+                        }}
+                        className="text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                        aria-label="GitHub"
+                      >
+                        <FaGithub size={16} />
+                      </span>
+                    )}
+                    {project.demo && (
+                      <span
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          window.open(project.demo, '_blank', 'noopener,noreferrer');
+                        }}
+                        className="text-gray-400 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+                        aria-label="External Link"
+                      >
+                        <FaExternalLinkAlt size={14} />
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                <h3 className="text-sm font-semibold mb-1.5 text-gray-950 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                  {project.title}
+                </h3>
+
+                <p className="text-gray-600 dark:text-gray-400 mb-3 text-xs leading-relaxed flex-grow">
+                  {project.description}
+                </p>
+
+                <div className="flex gap-2 mt-auto">
+                  {project.tech.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="rounded-full bg-blue-100/80 dark:bg-blue-400/10 px-2.5 py-0.5 text-[10px] font-medium text-blue-800 dark:text-blue-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+
+          <button
+            onClick={() => scroll('right')}
+            disabled={!canScrollRight}
+            className={`absolute -right-10 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white dark:bg-dark-card shadow-lg border border-gray-200 dark:border-dark-border flex items-center justify-center transition-opacity cursor-pointer ${
+              canScrollRight ? 'opacity-100 hover:bg-gray-100 dark:hover:bg-dark-border' : 'opacity-0 pointer-events-none'
+            }`}
+            aria-label="Scroll right"
+          >
+            <FaChevronRight className="text-gray-700 dark:text-gray-200" size={12} />
+          </button>
         </div>
       </div>
     </section>

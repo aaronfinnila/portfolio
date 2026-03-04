@@ -17,8 +17,8 @@ export default {
         },
       },
       fontFamily: {
-        playfair: ['var(--font-playfair)'],
-        sans: ['var(--font-inter)'],
+        heading: ['var(--font-merriweather)'],
+        sans: ['var(--font-lato)'],
       },
     },
   },

@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Playfair_Display, Inter } from 'next/font/google';
+import { Merriweather, Lato } from 'next/font/google';
+import { ThemeProvider } from './context/ThemeContext';
 
-const playfair = Playfair_Display({ 
+const merriweather = Merriweather({ 
   subsets: ['latin'],
-  variable: '--font-playfair',
+  weight: ['300', '400', '700', '900'],
+  variable: '--font-merriweather',
   display: 'swap',
 });
 
-const inter = Inter({ 
+const lato = Lato({ 
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['300', '400', '700', '900'],
+  variable: '--font-lato',
   display: 'swap',
 });
 
@@ -68,9 +71,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${playfair.variable} ${inter.variable} font-sans`}>
-        {children}
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+      <body className={`${merriweather.variable} ${lato.variable} font-sans`}>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  }
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,13 +1,9 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-200 border-t border-gray-300">
-      <div className="container mx-auto px-6 py-8">
-        <div className="text-center">
-          <p className="text-forest-700">
-            © {new Date().getFullYear()} Aaron Finnilä. All rights reserved.
-          </p>
-        </div>
-      </div>
+    <footer className="pb-0 lg:pb-0 pt-8 text-sm text-gray-500 dark:text-gray-500">
+      <p>
+        &copy; {new Date().getFullYear()} Aaron Finnil&auml;. All rights reserved.
+      </p>
     </footer>
   );
 }
