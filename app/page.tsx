@@ -65,7 +65,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-dark-bg text-gray-900 dark:text-gray-100 transition-colors duration-300">
-      <div className="lg:flex lg:justify-between lg:gap-16 mx-auto max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 lg:py-0">
+      <div className="lg:flex lg:justify-between lg:gap-24 mx-auto max-w-screen-xl px-6 py-12 md:px-12 md:py-20 lg:px-24 lg:py-0">
         <header
            className={`lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[40%] lg:flex-col lg:justify-between lg:py-24 transition-all duration-1000 ease-out ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -140,7 +140,7 @@ export default function Home() {
           </div>
         </header>
 
-        <main className="pt-24 lg:w-[60%] lg:py-24">
+        <main className="pt-24 lg:w-[55%] lg:py-24">
           <About />
           <Projects />
           <Contact />

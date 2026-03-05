@@ -107,15 +107,16 @@ export default function Projects() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}
       >
-        <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-gray-50/75 dark:bg-dark-bg/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+        <div className="sticky top-0 z-20 -mx-6 mb-4 w-[calc(100%+3rem)] bg-gray-50/75 dark:bg-dark-bg/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:w-[calc(100%+6rem)] md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
           <h2 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-100">Projects</h2>
         </div>
 
         <div className="relative">
+          {/* Desktop side arrows */}
           <button
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
-            className={`absolute -left-10 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white dark:bg-dark-card shadow-lg border border-gray-200 dark:border-dark-border flex items-center justify-center transition-opacity cursor-pointer ${
+            className={`hidden lg:flex absolute -left-10 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white dark:bg-dark-card shadow-lg border border-gray-200 dark:border-dark-border items-center justify-center transition-opacity cursor-pointer ${
               canScrollLeft ? 'opacity-100 hover:bg-gray-100 dark:hover:bg-dark-border' : 'opacity-0 pointer-events-none'
             }`}
             aria-label="Scroll left"
@@ -177,11 +178,11 @@ export default function Projects() {
                   {project.description}
                 </p>
 
-                <div className="flex gap-2 mt-auto">
+                <div className="flex gap-2 mt-auto flex-wrap">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="rounded-full bg-blue-100/80 dark:bg-blue-400/10 px-2.5 py-0.5 text-[10px] font-medium text-blue-800 dark:text-blue-300"
+                      className="rounded-full bg-blue-100/80 dark:bg-blue-400/10 px-2.5 py-0.5 text-[10px] font-medium text-blue-800 dark:text-blue-300 whitespace-nowrap"
                     >
                       {tech}
                     </span>
@@ -191,16 +192,41 @@ export default function Projects() {
             ))}
           </div>
 
+          {/* Desktop side arrow (right) */}
           <button
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
-            className={`absolute -right-10 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white dark:bg-dark-card shadow-lg border border-gray-200 dark:border-dark-border flex items-center justify-center transition-opacity cursor-pointer ${
+            className={`hidden lg:flex absolute -right-10 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-white dark:bg-dark-card shadow-lg border border-gray-200 dark:border-dark-border items-center justify-center transition-opacity cursor-pointer ${
               canScrollRight ? 'opacity-100 hover:bg-gray-100 dark:hover:bg-dark-border' : 'opacity-0 pointer-events-none'
             }`}
             aria-label="Scroll right"
           >
             <FaChevronRight className="text-gray-700 dark:text-gray-200" size={12} />
           </button>
+
+          {/* Mobile bottom arrows */}
+          <div className="flex lg:hidden justify-center gap-4 mt-2">
+            <button
+              onClick={() => scroll('left')}
+              disabled={!canScrollLeft}
+              className={`w-9 h-9 rounded-full bg-white dark:bg-dark-card shadow-lg border border-gray-200 dark:border-dark-border flex items-center justify-center transition-opacity cursor-pointer ${
+                canScrollLeft ? 'opacity-100 hover:bg-gray-100 dark:hover:bg-dark-border' : 'opacity-30 pointer-events-none'
+              }`}
+              aria-label="Scroll left"
+            >
+              <FaChevronLeft className="text-gray-700 dark:text-gray-200" size={12} />
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              disabled={!canScrollRight}
+              className={`w-9 h-9 rounded-full bg-white dark:bg-dark-card shadow-lg border border-gray-200 dark:border-dark-border flex items-center justify-center transition-opacity cursor-pointer ${
+                canScrollRight ? 'opacity-100 hover:bg-gray-100 dark:hover:bg-dark-border' : 'opacity-30 pointer-events-none'
+              }`}
+              aria-label="Scroll right"
+            >
+              <FaChevronRight className="text-gray-700 dark:text-gray-200" size={12} />
+            </button>
+          </div>
         </div>
       </div>
     </section>

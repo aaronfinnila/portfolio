@@ -35,7 +35,7 @@ export default function About() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}
       >
-        <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-gray-50/75 dark:bg-dark-bg/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+        <div className="sticky top-0 z-20 -mx-6 mb-4 w-[calc(100%+3rem)] bg-gray-50/75 dark:bg-dark-bg/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:w-[calc(100%+6rem)] md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
           <h2 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-100">About</h2>
         </div>
 
@@ -53,7 +53,7 @@ export default function About() {
             <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#E76F00] dark:hover:text-[#E76F00] transition-colors cursor-default">Java</span> applications,
             but I also have experience with scripting in{' '}
             <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#FFD43B] dark:hover:text-[#FFD43B] transition-colors cursor-default">Python</span> and
-            have a bit of experience building applications with{' '}
+            building applications with{' '}
             <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#A8B9CC] dark:hover:text-[#A8B9CC] transition-colors cursor-default">C</span>. I am also currently
             learning{' '}
             <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#9B4DCA] dark:hover:text-[#9B4DCA] transition-colors cursor-default">C#</span> for
