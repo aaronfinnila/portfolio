@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { FaGithub, FaChevronLeft, FaChevronRight, FaExternalLinkAlt, FaFolder } from 'react-icons/fa';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import ProjectGallery from './ProjectGallery';
 
 export default function Projects() {
   const { ref, isVisible } = useScrollAnimation(0.1);
@@ -16,13 +17,15 @@ export default function Projects() {
       description: "A 2D adventure RPG built with vanilla Java and Swing. Features a custom combat system, original art and audio, explorable areas, and an in-game casino.",
       tech: ["Java", "Swing"],
       github: "https://github.com/aaronfinnila/rilk",
-      demo: "https://awsy.itch.io/rilk",
+      demo: "https://aaronfinnila.itch.io/rilk",
+      images: ['/rilk1.png', '/rilk2.png', '/rilk3.png'],
     },
     {
       title: "Funding Advisor",
       description: "An AI-powered advisor for company investment decisions. Built with Next.js, it features a multi-step wizard that integrates with the Finnish PRH company registry API and uses AI to match companies against a funding instruments database.",
       tech: ["Next.js", "AI", "TypeScript"],
       demo: "https://fa.attractor.fi",
+      images: ['/fundingadvisor1.png'],
     },
     {
       title: "cs2dle",
@@ -30,24 +33,27 @@ export default function Projects() {
       tech: ["React", "Spring Boot", "PostgreSQL"],
       github: "https://github.com/aaronfinnila/cs2dle",
       demo: "https://cs2dle.org",
+      images: ['/cs2dle1.png', '/cs2dle2.png'],
     },
     {
       title: "Business Advisor",
       description: "A guided, multilingual web application that helps entrepreneurs prepare for business advisory meetings. Built with Next.js, it uses AI to generate personalized guidance based on a structured questionnaire.",
       tech: ["Next.js", "AI", "TypeScript"],
       demo: "https://ba.attractor.fi",
-    },
-    {
-      title: "C Calculator",
-      description: "A calculator application written in C with a graphical user interface built using the GTK4 library.",
-      tech: ["C", "GTK4"],
-      github: "https://github.com/aaronfinnila/c_calculator",
+      images: ['/businessadvisor1.png'],
     },
     {
       title: "Whispers",
       description: "A Java messaging application built for a Distributed Computer Systems course. Features TCP socket communication, multi-threaded client handling, and a client-server architecture.",
       tech: ["Java", "TCP Sockets"],
       github: "https://github.com/aaronfinnila/whispers",
+    },
+    {
+      title: "Battleships",
+      description: "A two-player Battleships game built with JavaFX and Maven. Players place ships in secret, take turns firing at each other's fleet, and track both their own board and their opponent's grid.",
+      tech: ["Java", "JavaFX", "Maven"],
+      github: "https://github.com/aaronfinnila/battleships",
+      images: ['/battleships1.png', '/battleships2.png'],
     },
     {
       title: "3dgame",
@@ -62,6 +68,16 @@ export default function Projects() {
     if (project.github) return project.github;
     return '#';
   };
+
+  const galleryItems = projects.flatMap((project) =>
+    project.images?.map((image, index) => ({
+      image,
+      alt: `${project.title} screenshot ${index + 1}`,
+      title: project.title,
+      description: project.description,
+      tech: project.tech,
+    })) ?? []
+  );
 
   const updateScrollButtons = useCallback(() => {
     const container = scrollContainerRef.current;
@@ -99,7 +115,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+      className="mb-12 scroll-mt-16 md:mb-20 lg:mb-28 lg:scroll-mt-24"
     >
       <div
         ref={ref}
@@ -110,6 +126,10 @@ export default function Projects() {
         <div className="sticky top-0 z-20 -mx-6 mb-4 w-[calc(100%+3rem)] bg-gray-50/75 dark:bg-dark-bg/75 px-6 py-5 backdrop-blur-sm md:-mx-12 md:w-[calc(100%+6rem)] md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
           <h2 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-100">Projects</h2>
         </div>
+
+        <h3 className="mb-6 hidden text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-100 lg:block">
+          Projects
+        </h3>
 
         <div className="relative">
           {/* Desktop side arrows */}
@@ -136,7 +156,7 @@ export default function Projects() {
                 href={getProjectLink(project)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-white dark:bg-dark-card rounded-lg p-5 shadow-md hover:shadow-lg dark:shadow-black/30 border border-gray-200 dark:border-dark-border-subtle flex flex-col min-w-[calc(40%-4px)] w-[calc(40%-4px)] flex-shrink-0 transition-all duration-300 hover:-translate-y-1 cursor-pointer no-underline"
+                className="group bg-white dark:bg-dark-card rounded-lg p-5 shadow-md hover:shadow-lg dark:shadow-black/30 border border-gray-200 dark:border-dark-border-subtle flex flex-col min-w-[calc(50%-0.375rem)] w-[calc(50%-0.375rem)] flex-shrink-0 transition-all duration-300 hover:-translate-y-1 cursor-pointer no-underline lg:min-w-[calc(40%-4px)] lg:w-[calc(40%-4px)]"
               >
                 <div className="flex items-center justify-between mb-3">
                   <FaFolder className="text-gray-400 dark:text-gray-600" size={24} />
@@ -228,6 +248,8 @@ export default function Projects() {
             </button>
           </div>
         </div>
+
+        <ProjectGallery items={galleryItems} />
       </div>
     </section>
   );

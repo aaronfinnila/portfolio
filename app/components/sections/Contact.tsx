@@ -9,7 +9,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+      className="mb-12 scroll-mt-16 md:mb-20 lg:mb-28 lg:scroll-mt-24"
     >
       <div
         ref={ref}

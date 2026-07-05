@@ -8,15 +8,15 @@ export default function About() {
   const education = [
     {
       period: '2026 — 2028',
-      title: "Master's in IT",
+      title: 'Master of Science (Technology)',
       organization: 'University of Turku',
       description:
-        'Continuing studies with a focus on advanced software engineering and distributed systems.',
+        'Continuing studies with a major in Software Engineering and a minor in Cybersecurity. Deepening my knowledge and experience in safe and scalable software as well as in cybersecurity topics such as penetration testing.',
       tech: ['Software Engineering', 'Distributed Systems'],
     },
     {
       period: '2023 — 2026',
-      title: "Bachelor's in IT",
+      title: 'Bachelor of Science (Technology)',
       organization: 'University of Turku',
       description:
         "Completed Bachelor's thesis on pathfinding algorithms in fall 2025. Core coursework in algorithms, data structures, databases, and software development.",
@@ -24,10 +24,21 @@ export default function About() {
     },
   ];
 
+  const experience = [
+    {
+      period: 'Summer 2026',
+      title: 'Summer Trainee',
+      organization: 'Vitec ALMA Oy',
+      description:
+        'Trainee in the Software Development team. Work primarily consists of fixing bugs and developing features on the frontend of a large enterprise-level web application.',
+      tech: ['React', 'TypeScript', 'Java', 'Fullstack', 'Auth'],
+    },
+  ];
+
   return (
     <section
       id="about"
-      className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+      className="mb-12 scroll-mt-16 md:mb-20 lg:mb-28 lg:scroll-mt-24"
     >
       <div
         ref={ref}
@@ -49,7 +60,7 @@ export default function About() {
             the way.
           </p>
           <p>
-            Most of my experience is in full-stack development and{' '}
+            Most of my experience is in fullstack development and{' '}
             <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#E76F00] dark:hover:text-[#E76F00] transition-colors cursor-default">Java</span> applications,
             but I also have experience with scripting in{' '}
             <span className="text-gray-950 dark:text-gray-200 font-medium hover:text-[#FFD43B] dark:hover:text-[#FFD43B] transition-colors cursor-default">Python</span> and
@@ -102,11 +113,62 @@ export default function About() {
             </a>{' '}
             2025, we placed 5th overall with the first version of Funding Advisor.
           </p>
+          <p>
+            When I'm not building, I like to spend my free time exercising, reading,
+            and playing video games. One of my goals this year is to run 3km in under 12 minutes.
+            My favorite book is Dostoevsky&apos;s <span className="italic">The Brothers Karamazov</span>,
+            and my favorite video game is Counter-Strike.
+          </p>
         </div>
 
         <div className="mt-12">
+          <h3 className="mb-6 text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-100">
+            Education
+          </h3>
+
           <ul className="space-y-8">
             {education.map((item, index) => (
+              <li key={index}>
+                <div className="relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:opacity-50">
+
+                  <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-500 sm:col-span-2">
+                    {item.period}
+                  </header>
+
+                  <div className="z-10 sm:col-span-6">
+                    <h4 className="font-medium leading-snug text-gray-950 dark:text-gray-200">
+                      <span>{item.title}</span>
+                      <span className="mx-1 text-gray-500 dark:text-gray-500">&middot;</span>
+                      <span className="text-gray-700 dark:text-gray-300">{item.organization}</span>
+                    </h4>
+
+                    <p className="mt-2 text-sm leading-normal text-gray-700 dark:text-gray-400">
+                      {item.description}
+                    </p>
+
+                    <ul className="mt-3 flex flex-wrap gap-2" aria-label="Technologies">
+                      {item.tech.map((t, i) => (
+                        <li key={i}>
+                          <span className="flex items-center rounded-full bg-blue-100/80 dark:bg-blue-400/10 px-3 py-1 text-xs font-medium leading-5 text-blue-800 dark:text-blue-300">
+                            {t}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mt-12">
+          <h3 className="mb-6 text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-100">
+            Experience
+          </h3>
+
+          <ul className="space-y-8">
+            {experience.map((item, index) => (
               <li key={index}>
                 <div className="relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:opacity-50">
 
