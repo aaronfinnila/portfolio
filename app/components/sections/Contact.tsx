@@ -21,6 +21,10 @@ export default function Contact() {
           <h2 className="text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-100">Contact</h2>
         </div>
 
+        <h3 className="mb-6 hidden text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-gray-100 lg:block">
+          CONTACT
+        </h3>
+
         <div className="space-y-4 text-gray-700 dark:text-gray-400 leading-relaxed">
           <p>
             Feel free to reach out - I'd love to hear from you. Whether you have a
